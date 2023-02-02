@@ -10,6 +10,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 app.get('/', (req, res) => {
     res.show('index.html');
 });
@@ -18,6 +19,13 @@ app.get('/about', (req, res) => {
     res.show('about.html');
 });
 
+app.get('/user', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/forbidden.html'));
+});
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
+})
 
 app.listen(8000, () => {
     console.log('Server is running on port: 8000');
